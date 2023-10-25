@@ -10,6 +10,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BACKGROUND, PHOTO_URL } from "../utils/constants";
 
 const Login = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -42,7 +43,6 @@ const Login = () => {
         // SignIn / SignUp
         if (!isLoggedIn) {
             // SignUp Login
-
             createUserWithEmailAndPassword(
                 auth,
                 email.current.value,
@@ -52,8 +52,7 @@ const Login = () => {
                     const user = userCredential.user;
                     updateProfile(user, {
                         displayName: name.current.value,
-                        photoURL:
-                            "https://avatars.githubusercontent.com/u/96120907?s=400&u=09ff8f121030735332f76ab0428a5764475616c8&v=4",
+                        photoURL: PHOTO_URL,
                     })
                         .then(() => {
                             const { uid, email, displayName, photoURL } =
@@ -61,12 +60,10 @@ const Login = () => {
                             dispatch(
                                 addUser({ uid, email, displayName, photoURL })
                             );
-                            navigate("/browse");
                         })
                         .catch((error) => {
                             setErrorMsg(error.message);
                         });
-                    navigate("/browse");
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -96,10 +93,7 @@ const Login = () => {
         <div>
             <Header />
             <div className="absolute">
-                <img
-                    src="https://assets.nflxext.com/ffe/siteui/vlv3/a73c4363-1dcd-4719-b3b1-3725418fd91d/fe1147dd-78be-44aa-a0e5-2d2994305a13/IN-en-20231016-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-                    alt="background"
-                />
+                <img src={BACKGROUND} alt="background" />
             </div>
             <form
                 onSubmit={(e) => {
