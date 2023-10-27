@@ -44,13 +44,13 @@ const Header = () => {
 
             {user && (
                 <div className="flex">
-                    <p className="my-auto me-4 text-3xl font-bold text-red-700">
+                    <p className="my-auto me-4 text-3xl font-bold text-white">
                         {user.displayName}
                     </p>
                     <img
                         src={user.photoURL}
                         alt="signout"
-                        className="w-14 h-14 me-4 my-auto rounded-full"
+                        className="w-14 h-14 me-4 my-auto rounded-full border-2 border-yellow-500"
                     />
                     <img
                         src={signout}

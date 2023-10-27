@@ -6,3 +6,12 @@ export const BACKGROUND =
 
 export const PHOTO_URL =
     "https://avatars.githubusercontent.com/u/96120907?s=400&u=09ff8f121030735332f76ab0428a5764475616c8&v=4";
+
+export const API_OPTIONS = {
+    method: "GET",
+    headers: {
+        accept: "application/json",
+        Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZGIzOWZkOTE4ZTE0ZWZlNjA3NWI0MjdjNmJlNDY3YiIsInN1YiI6IjY1Mzk5YTA3ZWM0NTUyMDBhYjg5MmJjNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dp-nY0sJlBOmrgrY9m06aDjppZsr6h7hAYx4YSdXxxc",
+    },
+};
