@@ -34,7 +34,13 @@
     - Build the movieCard
     - TMDB Image CDN URL
     - Made the browser page amazing with tailwind css
+    //////////////  <!-- Add popular, trending and old movies API also. -->  //////////////
     - usePopulerMovies Custom hook
+    - GPT Search Page
+    - GPT Search Bar
+    - Multi-language Feature in our App(*)
+    
+
 # Features
     - Login/Sign Up
         - Sign In/ Sign Up form

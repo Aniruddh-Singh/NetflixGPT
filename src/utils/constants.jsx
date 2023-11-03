@@ -17,3 +17,12 @@ export const API_OPTIONS = {
 };
 
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w185";
+
+export const LANGUAGE = [
+    { langIdentifier: "en", name: "English" },
+    { langIdentifier: "hindi", name: "Hindi" },
+    { langIdentifier: "spanish", name: "Spanish" },
+    { langIdentifier: "german", name: "German" },
+    { langIdentifier: "urdu", name: "Urdu" },
+    { langIdentifier: "persian", name: "Persian" },
+];
