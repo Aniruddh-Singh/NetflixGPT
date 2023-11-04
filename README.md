@@ -39,6 +39,8 @@
     - GPT Search Page
     - GPT Search Bar
     - Multi-language Feature in our App(*)
+    - GPT movie suggestions
+    - Added .env file
     
 
 # Features
