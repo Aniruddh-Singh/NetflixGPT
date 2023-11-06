@@ -50,14 +50,20 @@ const Header = () => {
     };
 
     return (
-        <div className="absolute w-full px-8 py-2 bg-gradient-to-b from-black z-30 flex justify-between">
-            <img className="w-44" src={LOGO} alt="logo" />
+        <div className="absolute w-full px-4 md:px-8 py-2 bg-gradient-to-b from-black z-30 flex flex-col md:flex-row justify-between">
+            <img className="w-44 m-auto md:m-0" src={LOGO} alt="logo" />
 
             {user && (
-                <div className="flex">
+                <div className="flex flex-wrap justify-end">
+                    <button
+                        className="md:mx-4 my-4 h-auto px-2 md:px-4 py-2 ms-2 bg-green-600 hover:bg-green-700 text-white rounded-lg"
+                        onClick={handleGptSearchClick}
+                    >
+                        {gptSearch ? "Home" : "GPT Search"}
+                    </button>
                     {gptSearch && (
                         <select
-                            className="px-4 py-2 my-4 bg-gray-700 text-white rounded-lg"
+                            className="px-2 md:px-4 py-2 my-4 ms-2 bg-gray-700 text-white rounded-lg"
                             onChange={handleLanguageChange}
                         >
                             {LANGUAGE.map((lang) => (
@@ -70,24 +76,18 @@ const Header = () => {
                             ))}
                         </select>
                     )}
-                    <button
-                        className="mx-4 my-4 h-auto px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg"
-                        onClick={handleGptSearchClick}
-                    >
-                        {gptSearch ? "Home" : "GPT Search"}
-                    </button>
-                    <p className="my-auto me-4 text-3xl font-bold text-white">
+                    <p className="hidden md:block my-auto md:me-4 ms-2 text-2xl md:text-3xl font-bold text-white">
                         {user.displayName}
                     </p>
                     <img
                         src={user.photoURL}
                         alt="signout"
-                        className="w-14 h-14 me-4 my-auto rounded-full border-2 border-yellow-500"
+                        className="w-10 h-10 md:w-14 md:h-14 ms-2 md:me-4 my-auto rounded-full border-2 border-yellow-500"
                     />
                     <img
                         src={signout}
                         alt="signout"
-                        className="w-12 h-12 rotate-180 my-auto rounded-full cursor-pointer"
+                        className="w-10 h-10 md:w-12 md:h-12 ms-2 rotate-180 my-auto rounded-full cursor-pointer"
                         onClick={handleSignout}
                     />
                 </div>
