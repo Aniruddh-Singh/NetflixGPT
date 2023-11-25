@@ -8,7 +8,7 @@ const GptSearchPage = () => {
         <>
             <div className="fixed -z-10">
                 <img
-                    className="h-screen object-cover md:h-auto"
+                    className="h-screen object-cover xl:h-auto"
                     src={BACKGROUND}
                     alt="background"
                 />

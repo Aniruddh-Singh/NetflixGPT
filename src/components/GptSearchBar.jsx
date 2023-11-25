@@ -14,11 +14,12 @@ const GptSearchBar = () => {
     const searchMovie = async (movie) => {
         const fetchMovies = await fetch(
             "https://api.themoviedb.org/3/search/movie?query=" +
-                movie +
-                "&include_adult=false&language=en-US&page=1",
+            movie +
+            "&include_adult=false&language=en-US&page=1",
             API_OPTIONS
         );
         const json = await fetchMovies.json();
+        // console.log(json.results);
 
         return json.results;
     };
@@ -28,27 +29,22 @@ const GptSearchBar = () => {
 
         const querySearch =
             "Give the list of movies as given below: " +
-            searchText.current?.value;
+            searchText.current?.value +
+            ` in the format as mentioned below: movie1, movie2, movie3, movie4, movie5 with no extra text in the result.`;
 
-        // const movieList = await openai.chat.completions.create({
-        //     messages: [{ role: "user", content: querySearch }],
-        //     model: "gpt-3.5-turbo",
-        // });
+        const movieList = await openai.chat.completions.create({
+            messages: [{ role: "user", content: querySearch }],
+            model: "gpt-3.5-turbo",
+        });
 
-        // if (!movieList.choices) {
-        //     // TODO: Handle error
-        // }
+        if (!movieList.choices) {
+            // TODO: Handle error
+        }
 
-        // console.log(movieList.choices?.[0]?.content.split(","));
-
-        // const movies = movieList.choices?.[0]?.content.split(",");
-        const movies = [
-            "Omg",
-            "murder",
-            "raaz",
-            "ragini mms",
-            "great grand masti",
-        ];
+        // const movies = movieList.choices?.[0]?.message?.content;
+        const movies = movieList.choices?.[0]?.message?.content.split(", ");
+        console.log(movies);
+        console.log(typeof (movies))
 
         const promiseData = movies.map((movies) => searchMovie(movies));
         const data = await Promise.all(promiseData);

@@ -17,7 +17,7 @@ const VideoBG = ({ movieID }) => {
                     "?autoplay=1&loop=1&mute=1"
                 }
                 title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="accelerometer; autoplay; loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             ></iframe>
         </div>
     );
