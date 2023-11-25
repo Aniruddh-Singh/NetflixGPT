@@ -43,12 +43,10 @@ const GptSearchBar = () => {
 
         // const movies = movieList.choices?.[0]?.message?.content;
         const movies = movieList.choices?.[0]?.message?.content.split(", ");
-        console.log(movies);
-        console.log(typeof (movies))
+        // console.log(movies);
 
         const promiseData = movies.map((movies) => searchMovie(movies));
         const data = await Promise.all(promiseData);
-        // console.log(data);
 
         dispatch(
             addSuggestedMovies({ gptMovies: movies, suggestedMovies: data })
