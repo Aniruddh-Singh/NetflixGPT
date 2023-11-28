@@ -19,27 +19,27 @@ const GptSearchBar = () => {
             API_OPTIONS
         );
         const json = await fetchMovies.json();
-        // console.log(json.results);
 
         return json.results;
     };
 
     const handleSearchClick = async () => {
-        // console.log(searchText.current?.value);
-
-        console.log("Before Looking no of requests it making.")
 
         const querySearch =
-            "Give the list of movies as given below: " +
-            searchText.current?.value +
-            ` in the format as mentioned below: movie1, movie2, movie3, movie4, movie5 with no extra text in the result.`;
+            "Act as a Movie Recommendation system and suggest some movies for the query : " +
+            searchText.current.value +
+            ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
+
+        // Command which I gave 😊
+        // const querySearch =
+        //     "Give the list of movies as given below: " +
+        //     searchText.current?.value +
+        //     ` in the format as mentioned below: movie1, movie2, movie3, movie4, movie5 with no extra text in the result.`;
 
         const movieList = await openai.chat.completions.create({
             messages: [{ role: "user", content: querySearch }],
             model: "gpt-3.5-turbo",
         });
-
-        console.log("After Looking no of requests it making.")
 
         if (!movieList.choices) {
             // TODO: Handle error
@@ -47,7 +47,6 @@ const GptSearchBar = () => {
 
         // const movies = movieList.choices?.[0]?.message?.content;
         const movies = movieList.choices?.[0]?.message?.content.split(", ");
-        // console.log(movies);
 
         const promiseData = movies.map((movies) => searchMovie(movies));
         const data = await Promise.all(promiseData);

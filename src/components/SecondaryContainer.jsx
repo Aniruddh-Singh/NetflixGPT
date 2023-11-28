@@ -5,14 +5,13 @@ import ShimmerUI from "./ShimmerUI";
 
 const SecondaryContainer = () => {
     const movies = useSelector((store) => store.movies);
-    // console.log(movies);
     return (
         <div className=" bg-black ">
             <div className="py-3 md:-mt-44 xl:-mt-80 px-3 md:pl-6 xl:pl-12 pr-4 relative z-10">
                 {!movies.nowPlayingMovies ||
-                !movies.popularMovies ||
-                !movies.topRatedMovies ||
-                !movies.upcomingMovies ? (
+                    !movies.popularMovies ||
+                    !movies.topRatedMovies ||
+                    !movies.upcomingMovies ? (
                     <ShimmerUI />
                 ) : (
                     <>
