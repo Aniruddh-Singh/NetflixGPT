@@ -27,6 +27,8 @@ const GptSearchBar = () => {
     const handleSearchClick = async () => {
         // console.log(searchText.current?.value);
 
+        console.log("Before Looking no of requests it making.")
+
         const querySearch =
             "Give the list of movies as given below: " +
             searchText.current?.value +
@@ -37,7 +39,7 @@ const GptSearchBar = () => {
             model: "gpt-3.5-turbo",
         });
 
-        console.log("Looking no of requests it making.")
+        console.log("After Looking no of requests it making.")
 
         if (!movieList.choices) {
             // TODO: Handle error
@@ -70,7 +72,7 @@ const GptSearchBar = () => {
                     placeholder={lang[language].gptSearchPlaceholder}
                 />
                 <button
-                    className=" px-2 md:px-4 py-2 m-2 md:m-3 bg-purple-500 text-white rounded-lg col-span-3"
+                    className=" px-2 md:px-4 py-2 m-2 md:m-3 bg-red-500 text-white rounded-lg col-span-3"
                     onClick={handleSearchClick}
                 >
                     {lang[language].search}
