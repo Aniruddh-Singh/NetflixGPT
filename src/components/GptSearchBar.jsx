@@ -37,6 +37,8 @@ const GptSearchBar = () => {
             model: "gpt-3.5-turbo",
         });
 
+        console.log("Looking no of requests it making.")
+
         if (!movieList.choices) {
             // TODO: Handle error
         }
