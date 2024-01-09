@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import signout from "../images/signout.png";
 import { auth } from "../utils/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
@@ -19,7 +19,7 @@ const Header = () => {
     function handleSignout() {
         signOut(auth)
             .then(() => { })
-            .catch((error) => {
+            .catch(() => {
                 navigate("/error");
             });
     }
@@ -27,6 +27,7 @@ const Header = () => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
+                console.log(user)
                 const { uid, email, displayName, photoURL } = user;
                 dispatch(addUser({ uid, email, displayName, photoURL }));
                 navigate("/browse");
@@ -49,8 +50,8 @@ const Header = () => {
     };
 
     return (
-        <div className="absolute w-full px-4 md:px-8 py-2 bg-gradient-to-b from-black z-30 flex flex-col md:flex-row justify-between">
-            <img className="w-44 m-auto md:m-0" src={LOGO} alt="logo" />
+        <div className="absolute w-full px-4 md:px-8 py-0 sm:py-2 bg-gradient-to-b from-black z-30 flex flex-col sm:flex-row justify-between">
+            <img className="w-44 m-auto sm:m-0" src={LOGO} alt="logo" />
 
             {user && (
                 <div className="flex flex-wrap justify-end">

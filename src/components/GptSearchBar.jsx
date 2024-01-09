@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import lang from "../utils/languageConstatnts";
 import { useDispatch, useSelector } from "react-redux";
 import openai from "../utils/openai";
@@ -8,6 +8,7 @@ import { addSuggestedMovies } from "../utils/GptSearchSlice";
 const GptSearchBar = () => {
     const dispatch = useDispatch();
     const language = useSelector((store) => store.config.language);
+    // const { gptMovies } = useSelector((store) => store.gptSearch);
 
     const searchText = useRef(null);
 
@@ -25,12 +26,16 @@ const GptSearchBar = () => {
 
     const handleSearchClick = async () => {
 
+        dispatch(
+            addSuggestedMovies({ getShimmer: true })
+        );
+
         const querySearch =
             "Act as a Movie Recommendation system and suggest some movies for the query : " +
             searchText.current.value +
             ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
 
-        // Command which I gave 😊
+        // Command which I gave to openAI 😊
         // const querySearch =
         //     "Give the list of movies as given below: " +
         //     searchText.current?.value +
@@ -45,7 +50,6 @@ const GptSearchBar = () => {
             // TODO: Handle error
         }
 
-        // const movies = movieList.choices?.[0]?.message?.content;
         const movies = movieList.choices?.[0]?.message?.content.split(", ");
 
         const promiseData = movies.map((movies) => searchMovie(movies));
@@ -59,7 +63,7 @@ const GptSearchBar = () => {
     return (
         <div className="pt-[10%] flex justify-center">
             <form
-                className="bg-black grid grid-cols-12 w-5/6 md:w-1/2 rounded-lg"
+                className="bg-black grid grid-cols-12 w-5/6 md:w-4/6 lg:w-1/2 rounded-lg"
                 onSubmit={(e) => {
                     e.preventDefault();
                 }}
@@ -67,7 +71,7 @@ const GptSearchBar = () => {
                 <input
                     type="text"
                     ref={searchText}
-                    className="py-2 px-2 md:px-4 m-2 md:m-3 col-span-9 rounded-lg placeholder-gray-700 placeholder:text-sm md:placeholder:text-lg placeholder:font-bold"
+                    className="py-2 px-2 md:px-4 m-2 md:m-3 col-span-9 rounded-lg placeholder-gray-700 placeholder:text-xs md:placeholder:text-lg placeholder:font-bold"
                     placeholder={lang[language].gptSearchPlaceholder}
                 />
                 <button

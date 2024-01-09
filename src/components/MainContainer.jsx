@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import VideoBG from "./VideoBG";
 import VideoTitle from "./VideoTitle";
@@ -12,7 +11,7 @@ const MainContainer = () => {
 
     const { original_title, overview, id } = movieBG;
     return (
-        <div className="pt-[40%] md:pt-0 bg-black">
+        <div className="pt-[35%] sm:pt-[15%] md:pt-0 bg-black">
             <VideoTitle title={original_title} overview={overview} />
             <VideoBG movieID={id} />
         </div>

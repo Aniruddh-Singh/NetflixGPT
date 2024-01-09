@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Header from "./Header";
 import { validation } from "../utils/validation";
 import {
@@ -21,6 +21,7 @@ const Login = () => {
     const name = useRef(null);
     const email = useRef(null);
     const password = useRef(null);
+    const phoneNumber = useRef(null);
 
     function toggleSignIn() {
         setIsLoggedIn(!isLoggedIn);
@@ -68,7 +69,7 @@ const Login = () => {
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    setErrorMsg("This email is already registered.");
+                    setErrorMsg("This email is already registered.", errorCode, errorMessage);
                 });
         } else {
             // SignIn Login
@@ -84,7 +85,7 @@ const Login = () => {
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    setErrorMsg("Incorrect email or password.");
+                    setErrorMsg("Incorrect email or password.", errorCode, errorMessage);
                 });
         }
     }
@@ -130,7 +131,8 @@ const Login = () => {
                 />
                 {!isLoggedIn && (
                     <input
-                        type="tel"
+                        ref={phoneNumber}
+                        type="number"
                         placeholder="Phone Number"
                         className="p-4 my-2 w-full bg-gray-800"
                     />

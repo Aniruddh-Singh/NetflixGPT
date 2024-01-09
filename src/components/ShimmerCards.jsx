@@ -1,4 +1,3 @@
-import React from "react";
 
 const ShimmerCards = () => {
     return (
@@ -9,3 +8,4 @@ const ShimmerCards = () => {
 };
 
 export default ShimmerCards;
+

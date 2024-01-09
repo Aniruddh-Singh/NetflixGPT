@@ -1,4 +1,3 @@
-import React from "react";
 import GptSearchBar from "./GptSearchBar";
 import GptMovieSuggestion from "./GptMovieSuggestion";
 import { BACKGROUND } from "../utils/constants";
@@ -13,7 +12,7 @@ const GptSearchPage = () => {
                     alt="background"
                 />
             </div>
-            <div className="pt-[40%] md:p-0">
+            <div className="pt-[40%] sm:pt-[10%] md:py-[3%] lg:p-0">
                 <GptSearchBar />
                 <GptMovieSuggestion />
             </div>
