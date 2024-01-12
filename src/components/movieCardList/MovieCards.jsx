@@ -1,10 +1,17 @@
-import { IMG_CDN_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { IMG_CDN_URL } from "../../utils/constants";
+import { addMovieId, addTrailerVideos } from "../../utils/movieSlice"
+import { useNavigate } from "react-router-dom";
 
 const MovieCards = ({ posterPath, movie }) => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     if (!posterPath) return null;
 
     const handleMovieCard = () => {
-        console.log(movie.id);
+        dispatch(addMovieId(movie.id));
+        navigate("/movieinfo/" + movie.id);
+        // console.log(posterPath)
     }
 
     return (

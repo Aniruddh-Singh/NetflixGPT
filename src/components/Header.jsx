@@ -76,7 +76,7 @@ const Header = () => {
                             ))}
                         </select>
                     )}
-                    <p className="hidden md:block my-auto md:me-4 ms-2 text-2xl md:text-3xl font-bold text-white">
+                    <p className="hidden lg:block my-auto md:me-4 ms-2 text-2xl md:text-3xl font-bold text-white">
                         {user.displayName}
                     </p>
                     <img

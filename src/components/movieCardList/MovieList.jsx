@@ -1,5 +1,5 @@
 import MovieCards from "./MovieCards";
-import "../App.css"
+import "../../App.css"
 
 const MovieList = ({ title, movies }) => {
 

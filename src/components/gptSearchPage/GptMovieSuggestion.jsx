@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import MovieList from "./MovieList";
-import ShimmerUI from "./ShimmerUI";
+import MovieList from "../movieCardList/MovieList";
+import ShimmerUI from "../shimmerUI/ShimmerUI";
 
 const GptMovieSuggestion = () => {
     const { suggestedMovies, gptMovies, getShimmer } = useSelector(

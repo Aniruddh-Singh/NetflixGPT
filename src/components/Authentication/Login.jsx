@@ -1,16 +1,16 @@
 import { useRef, useState } from "react";
-import Header from "./Header";
-import { validation } from "../utils/validation";
+import Header from "../Header";
+import { validation } from "../../utils/validation";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     updateProfile,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
-import { BACKGROUND, PHOTO_URL } from "../utils/constants";
+import { addUser } from "../../utils/userSlice";
+import { BACKGROUND, PHOTO_URL } from "../../utils/constants";
 
 const Login = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -115,6 +115,7 @@ const Login = () => {
                         type="text"
                         placeholder="Full Name"
                         className="p-4 my-2 w-full bg-gray-800"
+                        maxLength={15}
                     />
                 )}
                 <input
