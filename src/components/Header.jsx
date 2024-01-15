@@ -27,7 +27,7 @@ const Header = () => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log(user)
+                (user)
                 const { uid, email, displayName, photoURL } = user;
                 dispatch(addUser({ uid, email, displayName, photoURL }));
                 navigate("/browse");
@@ -76,14 +76,14 @@ const Header = () => {
                             ))}
                         </select>
                     )}
-                    <p className="hidden lg:block my-auto md:me-4 ms-2 text-2xl md:text-3xl font-bold text-white">
+                    <p className="hidden sm:block my-auto md:me-4 ms-2 text-2xl md:text-3xl font-bold text-white">
                         {user.displayName}
                     </p>
-                    <img
+                    {/* <img
                         src={user.photoURL}
                         alt="signout"
                         className="w-10 h-10 md:w-14 md:h-14 ms-2 md:me-4 my-auto rounded-full border-2 border-yellow-500"
-                    />
+                    /> */}
                     <img
                         src={signout}
                         alt="signout"

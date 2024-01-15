@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addPlayMovieTrailer } from "../utils/movieSlice";
 
 const usePlayMovieTrailer = (movieID) => {
+    console.log(movieID)
     const dispatch = useDispatch();
     // const trailerVideo = useSelector((store) => store.movies?.playMovieTrailer);
 

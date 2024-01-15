@@ -7,7 +7,7 @@ const VideoBG = ({ movieID }) => {
     useMovieTrailer(movieID);
 
     return (
-        <div>
+        <div >
             <iframe
                 className="w-full aspect-video"
                 src={

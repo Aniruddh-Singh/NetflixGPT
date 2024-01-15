@@ -52,7 +52,7 @@ const Login = () => {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     updateProfile(user, {
-                        displayName: name.current.value,
+                        displayName: name.current.value || "user123",
                         photoURL: PHOTO_URL,
                     })
                         .then(() => {
