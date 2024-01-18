@@ -5,6 +5,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     updateProfile,
+    GoogleAuthProvider
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +18,8 @@ const Login = () => {
     const [errorMsg, setErrorMsg] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    const provider = new GoogleAuthProvider();
 
     const name = useRef(null);
     const email = useRef(null);
@@ -32,7 +35,7 @@ const Login = () => {
 
     function handleButtonClick() {
         const msg = validation(
-            // name.current.value,
+            name?.current?.value,
             email.current.value,
             password.current.value,
             isLoggedIn
@@ -52,7 +55,7 @@ const Login = () => {
                 .then((userCredential) => {
                     const user = userCredential.user;
                     updateProfile(user, {
-                        displayName: name.current.value || "user123",
+                        displayName: name.current.value,
                         photoURL: PHOTO_URL,
                     })
                         .then(() => {
@@ -67,9 +70,7 @@ const Login = () => {
                         });
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    setErrorMsg("This email is already registered.", errorCode, errorMessage);
+                    setErrorMsg("This email is already registered.");
                 });
         } else {
             // SignIn Login
@@ -83,11 +84,31 @@ const Login = () => {
                     navigate("/browse");
                 })
                 .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    setErrorMsg("Incorrect email or password.", errorCode, errorMessage);
+                    setErrorMsg("Incorrect email or password.");
                 });
         }
+    }
+
+    function authHandleClick() {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // IdP data available using getAdditionalUserInfo(result)
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
     }
 
     return (
@@ -113,7 +134,7 @@ const Login = () => {
                     <input
                         ref={name}
                         type="text"
-                        placeholder="Full Name"
+                        placeholder="User Name (eg: user123)"
                         className="p-4 my-2 w-full bg-gray-800"
                         maxLength={15}
                     />
@@ -127,7 +148,7 @@ const Login = () => {
                 <input
                     ref={password}
                     type="password"
-                    placeholder="Password Address"
+                    placeholder="Password"
                     className="p-4 my-2 w-full bg-gray-800"
                 />
                 {!isLoggedIn && (
@@ -145,6 +166,11 @@ const Login = () => {
                 >
                     {isLoggedIn ? "SignIn" : "SignUp"}
                 </button>
+                <div className="flex justify-center">
+                    <img className="m-2 hover:cursor-pointer" onClick={authHandleClick} src="https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_google-40.png" />
+                    <img className="m-2 hover:cursor-pointer" onClick={authHandleClick} src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-40.png" />
+                    <img className="m-2 hover:cursor-pointer" onClick={authHandleClick} src="https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo_instagram-40.png" />
+                </div>
                 <p className="my-2 cursor-pointer" onClick={toggleSignIn}>
                     {isLoggedIn
                         ? "New to Netflix | Register here"
