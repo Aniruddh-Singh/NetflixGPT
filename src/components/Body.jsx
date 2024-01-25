@@ -3,6 +3,7 @@ import Browse from "./Browse";
 import Login from "./Authentication/Login";
 import PlayMovie from "./moviePage/PlayMovie";
 import MovieInfo from "./moviePage/MovieInfo";
+import Error from "./Error";
 
 const Body = () => {
     const appRouter = createBrowserRouter([
@@ -22,6 +23,10 @@ const Body = () => {
             path: "/movieinfo/:movieID",
             element: <MovieInfo />,
         },
+        {
+            path: "*",
+            element: <Error />
+        }
     ]);
 
     return <RouterProvider router={appRouter} />;
