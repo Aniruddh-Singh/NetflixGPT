@@ -52,7 +52,7 @@ const MovieDetails = () => {
             </div>
             {info && <div className='mt-8 p-2 bg-black bg-opacity-40 rounded-lg shadow-md shadow-white'>
                 {runtime && <div>
-                    <p>* Runtime: {(runtime / 60)} hours</p>
+                    <p>* Runtime: {(runtime / 60).toFixed(2)} hours</p>
                 </div>}
                 {imdb_rating != 0 && <div>
                     <p>* IMDB Rating: {imdb_rating}</p>

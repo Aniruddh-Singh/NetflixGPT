@@ -5,7 +5,8 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     updateProfile,
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +20,7 @@ const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const provider = new GoogleAuthProvider();
+    const provider1 = new GoogleAuthProvider();
 
     const name = useRef(null);
     const email = useRef(null);
@@ -89,16 +90,10 @@ const Login = () => {
         }
     }
 
-    function authHandleClick() {
-        signInWithPopup(auth, provider)
+    function googleSignInHandle() {
+        signInWithPopup(auth, provider1)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
                 const user = result.user;
-                // IdP data available using getAdditionalUserInfo(result)
-                // ...
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -110,6 +105,9 @@ const Login = () => {
                 // ...
             });
     }
+
+
+    function instaSignInHandle() { }
 
     return (
         <div>
@@ -135,7 +133,7 @@ const Login = () => {
                         ref={name}
                         type="text"
                         placeholder="User Name (eg: user123)"
-                        className="p-4 my-2 w-full bg-gray-800"
+                        className="p-4 my-1 w-full bg-gray-800"
                         maxLength={15}
                     />
                 )}
@@ -143,34 +141,41 @@ const Login = () => {
                     ref={email}
                     type="text"
                     placeholder="Email Address"
-                    className="p-4 my-2 w-full bg-gray-800"
+                    className="p-4 my-1 w-full bg-gray-800"
                 />
                 <input
                     ref={password}
                     type="password"
                     placeholder="Password"
-                    className="p-4 my-2 w-full bg-gray-800"
+                    className="p-4 my-1 w-full bg-gray-800"
                 />
                 {!isLoggedIn && (
                     <input
                         ref={phoneNumber}
                         type="number"
                         placeholder="Phone Number"
-                        className="p-4 my-2 w-full bg-gray-800"
+                        className="p-4 my-1 w-full bg-gray-800"
                     />
                 )}
                 <p className="text-red-500 font-bold py-2">{errorMsg}</p>
                 <button
-                    className="p-4 my-4 items-center bg-red-700 w-full rounded-lg"
+                    className="p-4 my-1 items-center bg-red-700 w-full rounded-lg"
                     onClick={handleButtonClick}
                 >
                     {isLoggedIn ? "SignIn" : "SignUp"}
                 </button>
-                <div className="flex justify-center">
-                    <img className="m-2 hover:cursor-pointer" onClick={authHandleClick} src="https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_google-40.png" />
-                    <img className="m-2 hover:cursor-pointer" onClick={authHandleClick} src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Facebook_colored_svg_copy-40.png" />
-                    <img className="m-2 hover:cursor-pointer" onClick={authHandleClick} src="https://cdn3.iconfinder.com/data/icons/2018-social-media-logotypes/1000/2018_social_media_popular_app_logo_instagram-40.png" />
-                </div>
+                {isLoggedIn && (
+                    <>
+                        <div className=" my-1 flex justify-center">
+                            <p>OR</p>
+                        </div>
+                        <div onClick={googleSignInHandle} className="p-1 my-1 flex rounded-lg justify-center items-center bg-white hover:cursor-pointer">
+                            <img className="m-2" src="https://cdn3.iconfinder.com/data/icons/logos-brands-3/24/logo_brand_brands_logos_google-24.png" />
+                            <p className="font-semibold text-black">Login with Google</p>
+                        </div>
+                    </>
+                )}
+
                 <p className="my-2 cursor-pointer" onClick={toggleSignIn}>
                     {isLoggedIn
                         ? "New to Netflix | Register here"
