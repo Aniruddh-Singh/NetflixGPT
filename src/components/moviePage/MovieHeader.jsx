@@ -1,22 +1,21 @@
-import { useEffect } from "react";
 import signout from "../../images/signout.png";
 import { auth } from "../../utils/firebase";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addUser, removeUser } from "../../utils/userSlice";
+import { useSelector } from "react-redux";
 import { LOGO } from "../../utils/constants";
 
 const MovieHeader = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const user = useSelector((store) => store.user);
     // const gptSearch = useSelector((store) => store.gptSearch.showGptSearch);
 
     function handleSignout() {
         signOut(auth)
-            .then(() => { navigate("/") })
+            .then(() => {
+                navigate("/")
+            })
             .catch(() => {
                 navigate("/error");
             });
