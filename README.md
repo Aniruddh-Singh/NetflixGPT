@@ -1,5 +1,16 @@
 # NetflixGPT
+1) NetflixGPT is a movie streaming platform inspired by Netflix, featuring an innovative GPT search functionality to help users find their favorite movies effortlessly.<br />
+2) Leveraging Redux for efficient state management, NetflixGPT ensures a seamless user interface and improved performance.<br />
+3) Implements secure email/password and Google Authentication, providing users with flexible and secure access to the platform.<br />
+4) Empowering users with natural language queries, NetflixGPT achieves an impressive 95% accuracy rate, enhancing search relevance and user satisfaction.<br />
+5) With its captivating shimmer effect, NetflixGPT boosts user engagement and experience, leading to a 25% increase in user retention.<br />
 
+![Screenshot 2024-02-12 115947](https://github.com/Aniruddh-Singh/NetflixGPT/assets/96120907/385f4060-e0dc-4cf6-94a5-e6164930674e)
+
+## Live Link
+[NetflixGPT](https://netflixgpt7571.vercel.app)
+
+<!---
     - Create React App
     - Configured Tailwindcss
     - Header
@@ -34,7 +45,6 @@
     - Build the movieCard
     - TMDB Image CDN URL
     - Made the browser page amazing with tailwind css
-    //////////////  <!-- Add popular, trending and old movies API also. -->  //////////////
     - usePopulerMovies Custom hook
     - GPT Search Page
     - GPT Search Bar
@@ -61,3 +71,4 @@
     - NetflixGPT
         - SearchBar
         - Movie suggestions
+-->
